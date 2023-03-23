@@ -19,7 +19,7 @@ reddit = praw.Reddit(
 )
 subreddit = reddit.subreddit('MemePiece')
 
-triggers = ['money', 'gold', 'treasure', 'berries']
+triggers = ['money', 'gold', 'treasure', 'berries', 'orange']
 replies = ["Give me all your {}!!!", "I love {}!!!", "Did you say {}?!! Can I have it?", "Sounds good, let me have it!"]
 
 for comment in subreddit.stream.comments(skip_existing=True):
