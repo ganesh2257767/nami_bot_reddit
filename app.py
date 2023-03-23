@@ -19,7 +19,7 @@ reddit = praw.Reddit(
 )
 subreddit = reddit.subreddit('MemePiece')
 
-triggers = ['money', 'gold', 'treasure']
+triggers = ['money', 'gold', 'treasure', 'berries']
 replies = ["Give me all your {}!!!", "I love {}!!!", "Did you say {}?!! Can I have it?", "Sounds good, let me have it!"]
 
 for comment in subreddit.stream.comments(skip_existing=True):
@@ -29,3 +29,4 @@ for comment in subreddit.stream.comments(skip_existing=True):
             i = ' & '.join([', '.join(trigger_match[:-1]), trigger_match[-1]]) if len(trigger_match) > 1 else trigger_match[0]
             reply = random.choice(replies).format(i)
             comment.reply(reply)
+            print(f"{comment.body} -> {reply}")
