@@ -17,10 +17,10 @@ reddit = praw.Reddit(
     username=username,
     user_agent="<Nami Wants Money 0.1>"
 )
-subreddit = reddit.subreddit('MemePiece')
+subreddit = reddit.subreddit('MemePiece+test')
 
 triggers = ['money', 'gold', 'treasure', 'berries', 'orange']
-replies = ["Give me all your {}!!!", "I love {}!!!", "Did you say {}?!! Can I have it?", "Sounds good, let me have it!"]
+replies = ["Give me your {}!!!", "I love {}!!!", "Did you say {}?!! Can I have it?", "Sounds good, let me have it!"]
 
 for comment in subreddit.stream.comments(skip_existing=True):
     if comment.author != 'NamiWantsMoney':
