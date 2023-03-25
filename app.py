@@ -29,4 +29,4 @@ for comment in subreddit.stream.comments(skip_existing=True):
             i = ' & '.join([', '.join(trigger_match[:-1]), trigger_match[-1]]) if len(trigger_match) > 1 else trigger_match[0]
             reply = random.choice(replies).format(i)
             comment.reply(reply)
-            print(f"{comment.body} -> {reply}")
+            print(f"[{comment.subreddit.name}] - {comment.author} said '{comment.body}' -> {reply}")
