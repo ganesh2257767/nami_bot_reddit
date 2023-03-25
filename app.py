@@ -19,8 +19,8 @@ reddit = praw.Reddit(
 )
 subreddit = reddit.subreddit('MemePiece+test')
 
-triggers = ['money', 'gold', 'treasure', 'berries', 'orange']
-replies = ["Give me your {}!!!", "I love {}!!!", "Did you say {}?!! Can I have it?", "Sounds good, let me have it!"]
+triggers = ['money', 'gold', 'treasure', 'berries', 'orange', 'tangerine']
+replies = ["Give me your {}!!!", "I love {}!!!", "Did you say {}?!! Can I have it?", "{} sounds good, let me have it!"]
 
 for comment in subreddit.stream.comments(skip_existing=True):
     if comment.author != 'NamiWantsMoney':
