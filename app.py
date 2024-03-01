@@ -23,7 +23,7 @@ triggers = ['money', 'gold', 'treasure', 'berries', 'orange', 'tangerine']
 replies = ["Give me your {}!!!", "I love {}!!!", "Did you say {}?!! Can I have it?", "{} sounds good, let me have it!"]
 
 for comment in subreddit.stream.comments(skip_existing=True):
-    if comment.author != 'NamiWantsMoney' and comment.is_root and random.random() > 0.5:
+    if comment.author != 'NamiWantsMoney' and comment.is_root:
         trigger_match = [x.upper() for x in triggers if x in comment.body.lower()]
         if trigger_match:
             i = ' & '.join([', '.join(trigger_match[:-1]), trigger_match[-1]]) if len(trigger_match) > 1 else trigger_match[0]
