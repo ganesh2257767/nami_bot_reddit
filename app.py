@@ -2,6 +2,7 @@ import praw
 import random
 from dotenv import load_dotenv
 import os
+import re
 
 load_dotenv()
 
@@ -17,16 +18,40 @@ reddit = praw.Reddit(
     username=username,
     user_agent="<Nami Wants Money 0.1>"
 )
+
+# For test subreddit
+# subreddit = reddit.subreddit('test')
+
+# For MemePiece + test
 subreddit = reddit.subreddit('MemePiece+test')
 
 triggers = ['money', 'gold', 'treasure', 'berries', 'orange', 'tangerine']
 replies = ["Give me your {}!!!", "I love {}!!!", "Did you say {}?!! Can I have it?", "{} sounds good, let me have it!"]
 
+special_triggers = {
+    r'\bmap\b|world': ['I will map out the entire world.', "My dream is to make a map of the whole world!"],
+    r'nami[-|~|\s]s+w+a+n+': ['Ewww hentai! 😒', "That'll be 10,000,000 berries! 😏", "Kyaaaaaa~~h 😨", "You can have a look for some berries 😉"],
+    r'bellemere': ["Don't touch Bellemere-san's orange with your dirty hands"],
+    r'navigator': ["I'm the best navigator around here!"],
+}
+
 for comment in subreddit.stream.comments(skip_existing=True):
-    if comment.author != 'NamiWantsMoney' and comment.is_root:
-        trigger_match = [x.upper() for x in triggers if x in comment.body.lower()]
-        if trigger_match:
-            i = ' & '.join([', '.join(trigger_match[:-1]), trigger_match[-1]]) if len(trigger_match) > 1 else trigger_match[0]
-            reply = random.choice(replies).format(i)
-            comment.reply(reply)
-            print(f"[{comment.subreddit.display_name}] - {comment.author} said '{comment.body}' -> {reply}")
+    if comment.author != 'NamiWantsMoney':
+        print("This is the comment", comment.body)
+        for k, v in special_triggers.items():
+            comment_ = comment.body.lower().replace("\\", '')
+            if re.search(k, comment_, re.IGNORECASE):
+                print("There's a special trigger", k, v)
+                reply = random.choice(v)
+                comment.reply(reply)
+                print(f"[{comment.subreddit.display_name}] - {comment.author} said '{comment.body}' -> {reply}")
+                break
+        else:
+            print("No special trigger, checking normal triggers")
+            trigger_match = [x.upper() for x in triggers if x in comment.body.lower()]
+            if trigger_match:
+                print("Normal trigger match", trigger_match)
+                i = ' & '.join([', '.join(trigger_match[:-1]), trigger_match[-1]]) if len(trigger_match) > 1 else trigger_match[0]
+                reply = random.choice(replies).format(i)
+                comment.reply(reply)
+                print(f"[{comment.subreddit.display_name}] - {comment.author} said '{comment.body}' -> {reply}")
