@@ -37,20 +37,20 @@ special_triggers = {
 
 for comment in subreddit.stream.comments(skip_existing=True):
     if comment.author != 'NamiWantsMoney':
-        print("This is the comment", comment.body)
+        # print("This is the comment", comment.body)
         for k, v in special_triggers.items():
             comment_ = comment.body.lower().replace("\\", '')
             if re.search(k, comment_, re.IGNORECASE):
-                print("There's a special trigger", k, v)
+                # print("There's a special trigger", k, v)
                 reply = random.choice(v)
                 comment.reply(reply)
                 print(f"[{comment.subreddit.display_name}] - {comment.author} said '{comment.body}' -> {reply}")
                 break
         else:
-            print("No special trigger, checking normal triggers")
+            # print("No special trigger, checking normal triggers")
             trigger_match = [x.upper() for x in triggers if x in comment.body.lower()]
             if trigger_match:
-                print("Normal trigger match", trigger_match)
+                # print("Normal trigger match", trigger_match)
                 i = ' & '.join([', '.join(trigger_match[:-1]), trigger_match[-1]]) if len(trigger_match) > 1 else trigger_match[0]
                 reply = random.choice(replies).format(i)
                 comment.reply(reply)
