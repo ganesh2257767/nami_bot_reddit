@@ -29,8 +29,8 @@ triggers = ['money', 'gold', 'treasure', 'berries', 'orange', 'tangerine']
 replies = ["Give me your {}!!!", "I love {}!!!", "Did you say {}?!! Can I have it?", "{} sounds good, let me have it!"]
 
 special_triggers = {
-    r'\bmap\b|world': ['I will map out the entire world.', "My dream is to make a map of the whole world!"],
-    r'nami[-|~|\s]s+w+a+n+': ['Ewww hentai! 😒', "That'll be 10,000,000 berries! 😏", "Kyaaaaaa~~h 😨", "You can have a look for some berries 😉"],
+    r'\bmap\b': ['I will map out the entire world.', "My dream is to make a map of the whole world!"],
+    r'na+mi[-|~|\s]s+w+a+n+': ['Ewww hentai! 😒', "That'll be 10,000,000 berries! 😏", "Kyaaaaaa~~hhhh 😨", "You can have a look for some berries 😉"],
     r'bellemere': ["Don't touch Bellemere-san's orange with your dirty hands"],
     r'navigator': ["I'm the best navigator around here!"],
 }
