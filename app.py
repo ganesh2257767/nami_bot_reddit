@@ -36,7 +36,7 @@ special_triggers = {
 }
 
 for comment in subreddit.stream.comments(skip_existing=True):
-    if comment.author != 'NamiWantsMoney':
+    if comment.author != 'NamiWantsMoney' and comment.is_root:
         # print("This is the comment", comment.body)
         for k, v in special_triggers.items():
             comment_ = comment.body.lower().replace("\\", '')
