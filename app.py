@@ -31,7 +31,7 @@ replies = ["Give me your {}!!!", "I love {}!!!", "Did you say {}?!! Can I have i
 special_triggers = {
     r'\bmap\b': ['I will map out the entire world.', "My dream is to make a map of the whole world!"],
     r'na+mi[-|~|\s]s+w+a+n+': ['Ewww hentai! 😒', "That'll be 10,000,000 berries! 😏", "Kyaaaaaa~~hhhh 😨", "You can have a look for some berries 😉", "👊 If you think I'm just another cute girl, you're dead wrong!"],
-    r'bellemere': ["Don't touch Bellemere-san's tangerines with your dirty hands"],
+    r'bellemere': ["Don't touch Bellemere-san's tangerines with your dirty hands."],
     r'navigator': ["I'm the best navigator around here!"],
 }
 
