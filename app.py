@@ -25,7 +25,7 @@ reddit = praw.Reddit(
 # For MemePiece + test
 subreddit = reddit.subreddit('MemePiece+test')
 
-triggers = ['money', 'gold', 'treasure', 'berries', 'orange', 'tangerine']
+triggers = ['money', 'gold', 'treasure', 'berries', 'tangerine']
 replies = ["Give me your {}!!!", "I love {}!!!", "Did you say {}?!! Can I have it?", "{} sounds good, let me have it!"]
 
 special_triggers = {
@@ -33,24 +33,21 @@ special_triggers = {
     r'na+mi[-|~|\s]s+w+a+n+': ['Ewww hentai! 😒', "That'll be 10,000,000 berries! 😏", "Kyaaaaaa~~hhhh 😨", "You can have a look for some berries 😉", "👊 If you think I'm just another cute girl, you're dead wrong!"],
     r'bellemere': ["Don't touch Bellemere-san's tangerines with your dirty hands."],
     r'navigator': ["I'm the best navigator around here!"],
+    r'\borange?\b': ["Tangerines are tastier!"],
 }
 
 for comment in subreddit.stream.comments(skip_existing=True):
     if comment.author != 'NamiWantsMoney' and comment.is_root:
-        # print("This is the comment", comment.body)
         for k, v in special_triggers.items():
             comment_ = comment.body.lower().replace("\\", '')
             if re.search(k, comment_, re.IGNORECASE):
-                # print("There's a special trigger", k, v)
                 reply = random.choice(v)
                 comment.reply(reply)
                 print(f"[{comment.subreddit.display_name}] - {comment.author} said '{comment.body}' -> {reply}")
                 break
         else:
-            # print("No special trigger, checking normal triggers")
             trigger_match = [x.upper() for x in triggers if x in comment.body.lower()]
             if trigger_match:
-                # print("Normal trigger match", trigger_match)
                 i = ' & '.join([', '.join(trigger_match[:-1]), trigger_match[-1]]) if len(trigger_match) > 1 else trigger_match[0]
                 reply = random.choice(replies).format(i)
                 comment.reply(reply)
