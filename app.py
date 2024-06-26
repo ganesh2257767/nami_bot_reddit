@@ -33,7 +33,7 @@ special_triggers = {
     r'na+mi[-|~|\s]s+w+a+n+': ['Ewww hentai! 😒', "That'll be 10,000,000 berries! 😏", "Kyaaaaaa~~hhhh 😨", "You can have a look for some berries 😉", "👊 If you think I'm just another cute girl, you're dead wrong!"],
     r'bellemere': ["Don't touch Bellemere-san's tangerines with your dirty hands."],
     r'navigator': ["I'm the best navigator around here!"],
-    r'\borange?\b': ["Tangerines are tastier!"],
+    r'\boranges?\b': ["Tangerines are tastier!"],
 }
 
 for comment in subreddit.stream.comments(skip_existing=True):
